@@ -32,7 +32,7 @@ def build_start_url(fb_id, access_token):
 def post_dict(post):
     return {'id': post['id'],
             'from': post['from']['name'],
-            'message': post.get('message', ''), # cheap hack alert!
+            'message': post.get('message', ''),  # cheap hack alert!
             'type': post['type'],
             'comments': post['comments']['count']}
 
@@ -61,7 +61,7 @@ def get_wishes(url, acc=None):
         if req.status_code == 200:
             content = req.json()
             feed = map(post_dict, content['data'])
-            wishes = filter(lambda x: all([x['type'] == 'status', # type is status
+            wishes = filter(lambda x: all([x['type'] == 'status',  # type is status
                                            x['from'] != self_id,
                                            x['comments'] == 0,
                                            is_bday_wish(x['message'])]),  # not already thanked
